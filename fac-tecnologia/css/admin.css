@@ -1,0 +1,117 @@
+/* Admin panel — reuses tokens from style.css */
+
+body.admin{ background:var(--black-soft); min-height:100vh; }
+
+/* ---------- Login screen ---------- */
+#login-screen{
+  min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
+}
+.login-box{
+  width:100%; max-width:380px; padding:40px 34px; text-align:center;
+}
+.login-box img{ height:44px; margin:0 auto 22px; filter:brightness(0) invert(1); }
+.login-box h2{ font-size:22px; margin-bottom:6px; }
+.login-box p{ font-size:13.5px; margin-bottom:28px; }
+.login-box .form-field{ text-align:left; }
+.login-error{ color:#ff6b6b; font-size:13px; margin-top:10px; min-height:18px; }
+
+/* ---------- Admin shell ---------- */
+#admin-shell{ display:none; min-height:100vh; }
+#admin-shell.active{ display:flex; }
+
+.admin-sidebar{
+  width:260px; flex-shrink:0; background:var(--black); border-right:1px solid var(--line);
+  padding:26px 18px; position:sticky; top:0; height:100vh; overflow-y:auto;
+  display:flex; flex-direction:column;
+}
+.admin-brand{ display:flex; align-items:center; gap:10px; padding:0 8px 24px; border-bottom:1px solid var(--line); margin-bottom:18px; }
+.admin-brand img{ height:26px; filter:brightness(0) invert(1); }
+.admin-brand span{ font-family:var(--font-mono); font-size:11px; color:var(--grey-500); }
+
+.admin-nav{ display:flex; flex-direction:column; gap:2px; flex:1; }
+.admin-nav button{
+  text-align:left; padding:11px 12px; border-radius:10px; border:none; background:none; color:var(--grey-300);
+  font-size:13.5px; display:flex; align-items:center; gap:10px; transition:all .2s;
+}
+.admin-nav button:hover{ background:var(--panel); color:var(--white); }
+.admin-nav button.active{ background:var(--accent-soft); color:var(--white); }
+.admin-nav button.active::before{ content:''; width:4px; height:4px; border-radius:50%; background:var(--accent); }
+
+.admin-sidebar-footer{ padding-top:16px; border-top:1px solid var(--line); margin-top:16px; display:flex; flex-direction:column; gap:10px; }
+.admin-sidebar-footer a, .admin-sidebar-footer button{
+  font-size:12.5px; color:var(--grey-500); background:none; border:none; text-align:left; padding:6px 4px;
+}
+.admin-sidebar-footer a:hover, .admin-sidebar-footer button:hover{ color:var(--accent); }
+
+.admin-main{ flex:1; padding:36px 44px 100px; max-width:980px; }
+.admin-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:12px; }
+.admin-header h1{ font-size:26px; }
+.admin-header p{ font-size:13.5px; margin-top:4px; }
+.save-indicator{ font-family:var(--font-mono); font-size:12px; color:var(--grey-500); display:flex; align-items:center; gap:8px; }
+.save-indicator .dot{ width:7px; height:7px; border-radius:50%; background:#3ddc84; box-shadow:0 0 8px #3ddc84; opacity:0; transition:opacity .3s; }
+.save-indicator.show .dot{ opacity:1; }
+
+.admin-panel{ display:none; margin-top:32px; }
+.admin-panel.active{ display:block; }
+
+.admin-card{ padding:26px 28px; margin-bottom:22px; }
+.admin-card h3{ font-size:15px; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--line); }
+
+.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:0 20px; }
+@media (max-width:700px){ .grid-2{ grid-template-columns:1fr; } .admin-main{ padding:28px 20px 100px; } }
+
+/* repeatable list items */
+.repeat-item{
+  border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-bottom:14px; position:relative;
+  background:var(--black-soft);
+}
+.repeat-item-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.repeat-item-head span{ font-family:var(--font-mono); font-size:11px; color:var(--grey-500); text-transform:uppercase; letter-spacing:.08em; }
+.icon-btn{
+  width:30px; height:30px; border-radius:8px; border:1px solid var(--line-strong); background:transparent; color:var(--grey-300);
+  display:inline-flex; align-items:center; justify-content:center; font-size:13px; transition:all .2s;
+}
+.icon-btn:hover{ border-color:#ff6b6b; color:#ff6b6b; }
+.icon-btn.up:hover, .icon-btn.down:hover{ border-color:var(--accent); color:var(--accent); }
+
+.add-btn{
+  width:100%; padding:14px; border-radius:12px; border:1px dashed var(--line-strong); background:transparent;
+  color:var(--grey-300); font-size:13.5px; transition:all .2s;
+}
+.add-btn:hover{ border-color:var(--accent); color:var(--accent); background:var(--accent-soft); }
+
+/* image upload widget */
+.img-upload{ display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+.img-upload .preview{
+  width:64px; height:64px; border-radius:10px; object-fit:cover; border:1px solid var(--line-strong); background:var(--panel);
+  flex-shrink:0;
+}
+.img-upload label.upload-btn{
+  padding:9px 16px; border-radius:8px; border:1px solid var(--line-strong); font-size:12.5px; cursor:pointer; color:var(--grey-100);
+}
+.img-upload label.upload-btn:hover{ border-color:var(--accent); color:var(--accent); }
+.img-upload input[type=file]{ display:none; }
+
+.tags-editor{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+.tag-pill{ display:flex; align-items:center; gap:8px; padding:6px 6px 6px 12px; border-radius:999px; border:1px solid var(--line-strong); font-size:12.5px; }
+.tag-pill button{ background:none; border:none; color:var(--grey-500); font-size:14px; }
+.tag-pill button:hover{ color:#ff6b6b; }
+.tag-input-row{ display:flex; gap:8px; }
+.tag-input-row input{ flex:1; }
+
+.toast{
+  position:fixed; bottom:26px; right:26px; background:var(--panel); border:1px solid var(--line-strong); border-radius:12px;
+  padding:14px 20px; font-size:13.5px; z-index:600; opacity:0; transform:translateY(10px); transition:all .35s var(--ease);
+  display:flex; align-items:center; gap:10px;
+}
+.toast.show{ opacity:1; transform:translateY(0); }
+.toast .dot{ width:7px; height:7px; border-radius:50%; background:#3ddc84; }
+
+textarea{ resize:vertical; min-height:90px; }
+
+.helper-text{ font-size:12px; color:var(--grey-500); margin-top:-8px; margin-bottom:16px; }
+
+.danger-zone{ border-color:rgba(255,107,107,0.35); }
+.danger-zone h3{ color:#ff6b6b; border-color:rgba(255,107,107,0.2); }
+.btn-danger{ border-color:rgba(255,107,107,0.5); color:#ff6b6b; }
+.btn-danger:hover{ background:#ff6b6b; border-color:#ff6b6b; color:#fff; }
